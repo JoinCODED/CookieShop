@@ -1,20 +1,12 @@
 import React from "react";
 
-// Data
-import cookies from "./cookies";
+// Components
+import CookieList from "./components/CookieList";
 
 // Styles
 import styles from "./styles";
 
 function App() {
-  const cookieList = cookies.map((cookie) => (
-    <div style={styles.cookie} key={cookie.id}>
-      <img src={cookie.image} alt={cookie.name} style={styles.cookieImage} />
-      <p style={styles.text}>{cookie.name}</p>
-      <p style={styles.text}>{cookie.price} KD</p>
-    </div>
-  ));
-
   return (
     <div>
       <div>
@@ -26,7 +18,7 @@ function App() {
           style={styles.shopImage}
         />
       </div>
-      <div style={styles.list}>{cookieList}</div>
+      <CookieList />
     </div>
   );
 }
