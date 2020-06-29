@@ -7,17 +7,6 @@ import cookies from "./cookies";
 import styles from "./styles";
 
 function App() {
-  console.log(cookies[0].name);
-  const example = () => {
-    if (false)
-      return (
-        <div>
-          <h1>HI I'm LUIS</h1>
-          <h1>I HAVE A QUESTION</h1>
-        </div>
-      );
-  };
-
   const cookieList = cookies.map((cookie) => (
     <div style={styles.cookie} key={cookie.id}>
       <img src={cookie.image} alt={cookie.name} style={styles.cookieImage} />
@@ -29,7 +18,6 @@ function App() {
   return (
     <div>
       <div>
-        {example()}
         <h1 style={styles.text}>Cookies and Beyond</h1>
         <h4 style={styles.text}>Where cookie maniacs gather</h4>
         <img
