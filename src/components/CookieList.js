@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 
 // Components
 import CookieItem from "./CookieItem";
-
-// Data
-import cookies from "../cookies";
+import SearchBar from "./SearchBar";
 
 // Styles
-import styles from "../styles";
+import { ListWrapper } from "../styles";
+import AddButton from "./Buttons/AddButton";
 
-const CookieList = () => {
-  const cookieList = cookies.map((cookie) => (
-    <CookieItem cookie={cookie} message="HIIII" key={cookie.id} />
-  ));
+const CookieList = ({ cookies, createCookie, deleteCookie }) => {
+  const [query, setQuery] = useState("");
 
-  return <div style={styles.list}>{cookieList}</div>;
+  const cookieList = cookies
+    .filter((cookie) => cookie.name.toLowerCase().includes(query.toLowerCase()))
+    .map((cookie) => (
+      <CookieItem cookie={cookie} deleteCookie={deleteCookie} key={cookie.id} />
+    ));
+
+  return (
+    <div className="container">
+      <SearchBar setQuery={setQuery} />
+      <ListWrapper className="row">{cookieList}</ListWrapper>
+      <AddButton createCookie={createCookie} />
+    </div>
+  );
 };
 
 export default CookieList;
