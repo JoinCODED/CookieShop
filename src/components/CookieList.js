@@ -1,29 +1,31 @@
 import React, { useState } from "react";
+import { observer } from "mobx-react";
 
 // Components
 import CookieItem from "./CookieItem";
 import SearchBar from "./SearchBar";
 
+// Stores
+import cookieStore from "../stores/cookieStore";
+
 // Styles
 import { ListWrapper } from "../styles";
 import AddButton from "./Buttons/AddButton";
 
-const CookieList = ({ cookies, createCookie, deleteCookie }) => {
+const CookieList = ({ createCookie }) => {
   const [query, setQuery] = useState("");
 
-  const cookieList = cookies
+  const cookieList = cookieStore.cookies
     .filter((cookie) => cookie.name.toLowerCase().includes(query.toLowerCase()))
-    .map((cookie) => (
-      <CookieItem cookie={cookie} deleteCookie={deleteCookie} key={cookie.id} />
-    ));
+    .map((cookie) => <CookieItem cookie={cookie} key={cookie.id} />);
 
   return (
     <div className="container">
       <SearchBar setQuery={setQuery} />
       <ListWrapper className="row">{cookieList}</ListWrapper>
-      <AddButton createCookie={createCookie} />
+      <AddButton />
     </div>
   );
 };
 
-export default CookieList;
+export default observer(CookieList);

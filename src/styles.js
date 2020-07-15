@@ -59,6 +59,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
+export const LabelStyled = styled.label`
+  color: ${(props) => props.theme.black};
+`;
+
 export const ListWrapper = styled.div`
   align-items: center;
   justify-content: center;
@@ -71,6 +75,10 @@ export const Logo = styled(Link)`
   img {
     width: 8rem;
   }
+`;
+
+export const ModalTitle = styled.h3`
+  color: ${(props) => props.theme.black};
 `;
 
 export const NavItem = styled(NavLink)`
@@ -110,5 +118,9 @@ export const ThemeButton = styled.button`
 
 export const Title = styled.h1`
   text-align: center;
+  color: ${(props) => props.theme.pink};
+`;
+
+export const UpdateButtonStyled = styled.p`
   color: ${(props) => props.theme.pink};
 `;

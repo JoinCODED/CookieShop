@@ -1,13 +1,15 @@
 import React from "react";
+import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 
 // Components
 import DeleteButton from "./Buttons/DeleteButton";
+import UpdateButton from "./Buttons/UpdateButton";
 
 // Styles
 import { CookieWrapper } from "../styles";
 
-const CookieItem = ({ cookie, deleteCookie }) => {
+const CookieItem = ({ cookie }) => {
   return (
     <CookieWrapper>
       <Link to={`/cookies/${cookie.slug}`}>
@@ -15,9 +17,10 @@ const CookieItem = ({ cookie, deleteCookie }) => {
       </Link>
       <p>{cookie.name}</p>
       <p className="cookie-price">{cookie.price} KD</p>
-      <DeleteButton cookieId={cookie.id} deleteCookie={deleteCookie} />
+      <UpdateButton cookie={cookie} />
+      <DeleteButton cookieId={cookie.id} />
     </CookieWrapper>
   );
 };
 
-export default CookieItem;
+export default observer(CookieItem);

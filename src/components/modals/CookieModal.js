@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 
+// Stores
+import cookieStore from "../../stores/cookieStore";
+
 // Styles
-import { CreateButtonStyled } from "../../styles";
+import { CreateButtonStyled, LabelStyled, ModalTitle } from "../../styles";
 
 const customStyles = {
   content: {
@@ -15,13 +18,15 @@ const customStyles = {
   },
 };
 
-const CookieModal = ({ isOpen, closeModal, createCookie }) => {
-  const [cookie, setCookie] = useState({
-    name: "",
-    price: 0,
-    description: "",
-    image: "",
-  });
+const CookieModal = ({ isOpen, closeModal, oldCookie }) => {
+  const [cookie, setCookie] = useState(
+    oldCookie ?? {
+      name: "",
+      price: 0,
+      description: "",
+      image: "",
+    }
+  );
 
   const handleChange = (event) => {
     const newCookie = { ...cookie, [event.target.name]: event.target.value };
@@ -30,7 +35,12 @@ const CookieModal = ({ isOpen, closeModal, createCookie }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createCookie(cookie);
+
+    // oldCookie
+    //   ? cookieStore.updateCookie(cookie)
+    //   : cookieStore.createCookie(cookie);
+
+    cookieStore[oldCookie ? "updateCookie" : "createCookie"](cookie);
     closeModal();
   };
 
@@ -41,49 +51,54 @@ const CookieModal = ({ isOpen, closeModal, createCookie }) => {
       style={customStyles}
       contentLabel="Cookie Modal"
     >
-      <h3>New Cookie</h3>
+      <ModalTitle>New Cookie</ModalTitle>
       <form onSubmit={handleSubmit}>
         <div className="form-group row">
           <div className="col-6">
-            <label>Name</label>
+            <LabelStyled>Name</LabelStyled>
             <input
+              required
               name="name"
               type="text"
               onChange={handleChange}
               className="form-control"
+              value={cookie.name}
             />
           </div>
           <div className="col-6">
-            <label>Price</label>
+            <LabelStyled>Price</LabelStyled>
             <input
               name="price"
               type="number"
               min="15"
               onChange={handleChange}
               className="form-control"
+              value={cookie.price}
             />
           </div>
         </div>
         <div className="form-group">
-          <label>Description</label>
+          <LabelStyled>Description</LabelStyled>
           <input
             name="description"
             type="text"
             onChange={handleChange}
             className="form-control"
+            value={cookie.description}
           />
         </div>
         <div className="form-group">
-          <label>Image</label>
+          <LabelStyled>Image</LabelStyled>
           <input
             name="image"
             type="text"
             onChange={handleChange}
             className="form-control"
+            value={cookie.image}
           />
         </div>
         <CreateButtonStyled className="btn float-right">
-          Create
+          {oldCookie ? "Update" : "Create"}
         </CreateButtonStyled>
       </form>
     </Modal>

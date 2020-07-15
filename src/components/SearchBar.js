@@ -3,9 +3,12 @@ import React from "react";
 // Styles
 import { SearchBarStyled } from "../styles";
 
-const SearchBar = (props) => {
+const SearchBar = ({ setQuery }) => {
   return (
-    <SearchBarStyled onChange={(event) => props.setQuery(event.target.value)} />
+    <SearchBarStyled
+      onChange={(event) => setQuery(event.target.value)}
+      placeholder="Search for cookies by name"
+    />
   );
 };
 
