@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import CookieModal from "../modals/CookieModal";
 
 // Styles
-import { UpdateButtonStyled } from "../../styles";
+import { UpdateButtonStyled } from "./styles";
 
 const UpdateButton = ({ cookie }) => {
   const [isOpen, setIsOpen] = useState(false);

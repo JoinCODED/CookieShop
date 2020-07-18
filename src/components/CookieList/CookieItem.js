@@ -3,11 +3,11 @@ import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 
 // Components
-import DeleteButton from "./Buttons/DeleteButton";
-import UpdateButton from "./Buttons/UpdateButton";
+import DeleteButton from "../buttons/DeleteButton";
+import UpdateButton from "../buttons/UpdateButton";
 
 // Styles
-import { CookieWrapper } from "../styles";
+import { CookieWrapper } from "./styles";
 
 const CookieItem = ({ cookie }) => {
   return (

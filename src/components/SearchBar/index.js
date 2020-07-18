@@ -1,7 +1,7 @@
 import React from "react";
 
 // Styles
-import { SearchBarStyled } from "../styles";
+import { SearchBarStyled } from "./styles";
 
 const SearchBar = ({ setQuery }) => {
   return (

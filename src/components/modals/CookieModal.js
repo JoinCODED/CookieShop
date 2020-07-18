@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import cookieStore from "../../stores/cookieStore";
 
 // Styles
-import { CreateButtonStyled, LabelStyled, ModalTitle } from "../../styles";
+import { CreateButtonStyled, LabelStyled, ModalTitle } from "./styles";
 
 const customStyles = {
   content: {
@@ -35,11 +35,6 @@ const CookieModal = ({ isOpen, closeModal, oldCookie }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // oldCookie
-    //   ? cookieStore.updateCookie(cookie)
-    //   : cookieStore.createCookie(cookie);
-
     cookieStore[oldCookie ? "updateCookie" : "createCookie"](cookie);
     closeModal();
   };

@@ -3,13 +3,13 @@ import { observer } from "mobx-react";
 import { Link, Redirect, useParams } from "react-router-dom";
 
 // Components
-import DeleteButton from "./Buttons/DeleteButton";
+import DeleteButton from "../buttons/DeleteButton";
 
 // Stores
-import cookieStore from "../stores/cookieStore";
+import cookieStore from "../../stores/cookieStore";
 
 // Styles
-import { DetailWrapper } from "../styles";
+import { DetailWrapper } from "./styles";
 
 const CookieDetail = () => {
   const { cookieSlug } = useParams();

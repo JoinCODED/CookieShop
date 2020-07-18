@@ -3,16 +3,16 @@ import { observer } from "mobx-react";
 
 // Components
 import CookieItem from "./CookieItem";
-import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar";
 
 // Stores
-import cookieStore from "../stores/cookieStore";
+import cookieStore from "../../stores/cookieStore";
 
 // Styles
-import { ListWrapper } from "../styles";
-import AddButton from "./Buttons/AddButton";
+import { ListWrapper } from "./styles";
+import AddButton from "../buttons/AddButton";
 
-const CookieList = ({ createCookie }) => {
+const CookieList = () => {
   const [query, setQuery] = useState("");
 
   const cookieList = cookieStore.cookies

@@ -29,10 +29,14 @@ const theme = {
 };
 
 function App() {
-  const [currentTheme, setCurrentTheme] = useState("light");
+  const savedTheme = localStorage.getItem("theme") ?? "light";
+  const [currentTheme, setCurrentTheme] = useState(savedTheme);
 
-  const handleToggle = () =>
-    setCurrentTheme(currentTheme === "light" ? "dark" : "light");
+  const handleToggle = () => {
+    const newTheme = currentTheme === "light" ? "dark" : "light";
+    setCurrentTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
 
   return (
     <ThemeProvider theme={theme[currentTheme]}>

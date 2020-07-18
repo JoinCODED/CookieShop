@@ -4,7 +4,7 @@ import React from "react";
 import cookieStore from "../../stores/cookieStore";
 
 // Styles
-import { DeleteButtonStyled } from "../../styles";
+import { DeleteButtonStyled } from "./styles";
 
 const DeleteButton = ({ cookieId }) => {
   const handleDelete = () => cookieStore.deleteCookie(cookieId);

@@ -1,10 +1,10 @@
 import React from "react";
 
 // Styles
-import lightLogo from "../light-logo.png";
-import darkLogo from "../dark-logo.png";
+import lightLogo from "../../light-logo.png";
+import darkLogo from "../../dark-logo.png";
 
-import { Logo, NavItem, NavStyled, ThemeButton } from "../styles";
+import { Logo, NavItem, NavStyled, ThemeButton } from "./styles";
 
 const NavBar = ({ currentTheme, handleToggle }) => {
   return (
