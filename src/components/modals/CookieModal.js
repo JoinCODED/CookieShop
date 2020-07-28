@@ -33,6 +33,9 @@ const CookieModal = ({ isOpen, closeModal, oldCookie }) => {
     setCookie(newCookie);
   };
 
+  const handleImage = (event) =>
+    setCookie({ ...cookie, image: event.target.files[0] });
+
   const handleSubmit = (event) => {
     event.preventDefault();
     cookieStore[oldCookie ? "updateCookie" : "createCookie"](cookie);
@@ -86,10 +89,9 @@ const CookieModal = ({ isOpen, closeModal, oldCookie }) => {
           <LabelStyled>Image</LabelStyled>
           <input
             name="image"
-            type="text"
-            onChange={handleChange}
+            type="file"
+            onChange={handleImage}
             className="form-control"
-            value={cookie.image}
           />
         </div>
         <CreateButtonStyled className="btn float-right">
