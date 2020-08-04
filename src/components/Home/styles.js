@@ -10,8 +10,3 @@ export const ShopImage = styled.img`
   margin-right: auto;
   width: 50%;
 `;
-
-export const Title = styled.h1`
-  text-align: center;
-  color: ${(props) => props.theme.pink};
-`;

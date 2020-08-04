@@ -17,6 +17,9 @@ const NavBar = ({ currentTheme, handleToggle }) => {
           />
         </Logo>
         <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+          <NavItem className="nav-item" to="/bakeries">
+            Bakeries
+          </NavItem>
           <NavItem className="nav-item" to="/cookies">
             Cookies
           </NavItem>

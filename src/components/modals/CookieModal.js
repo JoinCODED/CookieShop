@@ -18,9 +18,10 @@ const customStyles = {
   },
 };
 
-const CookieModal = ({ isOpen, closeModal, oldCookie }) => {
+const CookieModal = ({ bakeryId, isOpen, closeModal, oldCookie }) => {
   const [cookie, setCookie] = useState(
     oldCookie ?? {
+      bakeryId,
       name: "",
       price: 0,
       description: "",

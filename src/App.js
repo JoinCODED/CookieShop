@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { Route, Switch } from "react-router";
+import { observer } from "mobx-react";
 
 // Components
-import CookieDetail from "./components/CookieDetail";
-import CookieList from "./components/CookieList";
-import Home from "./components/Home";
 import NavBar from "./components/NavBar";
+import Routes from "./components/Routes";
 
 // Styles
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./styles";
+
+// Stores
+import bakeryStore from "./stores/bakeryStore";
+import cookieStore from "./stores/cookieStore";
 
 const theme = {
   light: {
@@ -42,19 +44,13 @@ function App() {
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
       <NavBar currentTheme={currentTheme} handleToggle={handleToggle} />
-      <Switch>
-        <Route path="/cookies/:cookieSlug">
-          <CookieDetail />
-        </Route>
-        <Route path="/cookies">
-          <CookieList />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
+      {bakeryStore.loading || cookieStore.loading ? (
+        <h1>Loading</h1>
+      ) : (
+        <Routes />
+      )}
     </ThemeProvider>
   );
 }
 
-export default App;
+export default observer(App);

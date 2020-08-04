@@ -10,6 +10,7 @@ import cookieStore from "../../stores/cookieStore";
 
 // Styles
 import { DetailWrapper } from "./styles";
+import UpdateButton from "../buttons/UpdateButton";
 
 const CookieDetail = () => {
   const { cookieSlug } = useParams();
@@ -29,6 +30,7 @@ const CookieDetail = () => {
       <img src={cookie.image} alt={cookie.name} />
       <p>{cookie.description}</p>
       <p>{cookie.price}</p>
+      <UpdateButton cookie={cookie} />
       <DeleteButton cookieId={cookie.id} />
     </DetailWrapper>
   );

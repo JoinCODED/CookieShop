@@ -7,7 +7,7 @@ const SearchBar = ({ setQuery }) => {
   return (
     <SearchBarStyled
       onChange={(event) => setQuery(event.target.value)}
-      placeholder="Search for cookies by name"
+      placeholder="Search by name"
     />
   );
 };
