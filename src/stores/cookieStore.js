@@ -15,16 +15,20 @@ class CookieStore {
     }
   };
 
-  createCookie = async (newCookie) => {
-    console.log("CookieStore -> createCookie -> newCookie", newCookie);
+  getCookieById = (cookieId) =>
+    this.cookies.find((cookie) => cookie.id === cookieId);
+
+  createCookie = async (newCookie, bakery) => {
     try {
       const formData = new FormData();
       for (const key in newCookie) formData.append(key, newCookie[key]);
       const res = await axios.post(
-        `http://localhost:8000/bakeries/${newCookie.bakeryId}/cookies`,
+        `http://localhost:8000/bakeries/${bakery.id}/cookies`,
         formData
       );
-      this.cookies.push(res.data);
+      const cookie = res.data;
+      this.cookies.push(cookie);
+      bakery.cookies.push(cookie);
     } catch (error) {
       console.log("CookieStore -> createCookie -> error", error);
     }
@@ -43,7 +47,8 @@ class CookieStore {
       const cookie = this.cookies.find(
         (cookie) => cookie.id === updatedCookie.id
       );
-      for (const key in formData) cookie[key] = formData[key];
+      for (const key in updatedCookie) cookie[key] = updatedCookie[key];
+      cookie.image = URL.createObjectURL(updatedCookie.image);
     } catch (error) {
       console.log("CookieStore -> updateCookie -> error", error);
     }

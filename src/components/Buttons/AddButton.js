@@ -7,7 +7,7 @@ import CookieModal from "../modals/CookieModal";
 import { BsPlusCircle } from "react-icons/bs";
 import BakeryModal from "../modals/BakeryModal";
 
-const AddButton = ({ bakeryId }) => {
+const AddButton = ({ bakery }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
@@ -16,12 +16,8 @@ const AddButton = ({ bakeryId }) => {
   return (
     <div>
       <BsPlusCircle className="float-right" size="2em" onClick={openModal} />
-      {bakeryId ? (
-        <CookieModal
-          bakeryId={bakeryId}
-          isOpen={isOpen}
-          closeModal={closeModal}
-        />
+      {bakery ? (
+        <CookieModal bakery={bakery} isOpen={isOpen} closeModal={closeModal} />
       ) : (
         <BakeryModal isOpen={isOpen} closeModal={closeModal} />
       )}

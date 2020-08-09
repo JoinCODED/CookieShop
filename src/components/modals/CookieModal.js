@@ -18,10 +18,9 @@ const customStyles = {
   },
 };
 
-const CookieModal = ({ bakeryId, isOpen, closeModal, oldCookie }) => {
+const CookieModal = ({ bakery, isOpen, closeModal, oldCookie }) => {
   const [cookie, setCookie] = useState(
     oldCookie ?? {
-      bakeryId,
       name: "",
       price: 0,
       description: "",
@@ -39,7 +38,7 @@ const CookieModal = ({ bakeryId, isOpen, closeModal, oldCookie }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    cookieStore[oldCookie ? "updateCookie" : "createCookie"](cookie);
+    cookieStore[oldCookie ? "updateCookie" : "createCookie"](cookie, bakery);
     closeModal();
   };
 

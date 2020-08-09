@@ -13,6 +13,7 @@ import { DetailWrapper } from "../CookieDetail/styles";
 import bakeryStore from "../../stores/bakeryStore";
 import CookieList from "../CookieList";
 import DeleteButton from "../buttons/DeleteButton";
+import cookieStore from "../../stores/cookieStore";
 
 const BakeryDetail = () => {
   const { bakerySlug } = useParams();
@@ -23,6 +24,10 @@ const BakeryDetail = () => {
 
   if (!bakery) return <Redirect to="/bakeries" />;
 
+  const cookies = bakery.cookies
+    .map((cookie) => cookieStore.getCookieById(cookie.id))
+    .filter((cookie) => cookie);
+
   return (
     <div className="row">
       <div className="container">
@@ -30,12 +35,12 @@ const BakeryDetail = () => {
           <h4>{bakery.name}</h4>
           <img src={bakery.image} alt={bakery.name} />
           <UpdateButton bakery={bakery} />
+          <DeleteButton bakeryId={bakery.id} />
         </DetailWrapper>
       </div>
       <div className="col-12">
-        <CookieList cookies={bakery.cookies} />
-        <AddButton bakeryId={bakery.id} />
-        <DeleteButton bakeryId={bakery.id} />
+        <CookieList cookies={cookies} />
+        <AddButton bakery={bakery} />
       </div>
     </div>
   );
