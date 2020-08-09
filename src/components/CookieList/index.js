@@ -8,7 +8,7 @@ import SearchBar from "../SearchBar";
 // Styles
 import { ListWrapper } from "./styles";
 
-const CookieList = ({ cookies }) => {
+const CookieList = ({ cookies = [] }) => {
   const [query, setQuery] = useState("");
 
   const cookieList = cookies

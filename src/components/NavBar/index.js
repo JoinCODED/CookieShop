@@ -1,9 +1,11 @@
 import React from "react";
 
+// Components
+import SignupButton from "../buttons/SignupButton";
+
 // Styles
 import lightLogo from "../../light-logo.png";
 import darkLogo from "../../dark-logo.png";
-
 import { Logo, NavItem, NavStyled, ThemeButton } from "./styles";
 
 const NavBar = ({ currentTheme, handleToggle }) => {
@@ -23,6 +25,7 @@ const NavBar = ({ currentTheme, handleToggle }) => {
           <NavItem className="nav-item" to="/cookies">
             Cookies
           </NavItem>
+          <SignupButton />
           <ThemeButton className="nav-item active" onClick={handleToggle}>
             {currentTheme === "light" ? "Dark" : "Light"} Mode
           </ThemeButton>
