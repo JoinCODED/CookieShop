@@ -1,5 +1,5 @@
 import { decorate, observable } from "mobx";
-import axios from "axios";
+import instance from "./instance";
 
 class CookieStore {
   cookies = [];
@@ -7,7 +7,7 @@ class CookieStore {
 
   fetchCookies = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/cookies");
+      const res = await instance.get("/cookies");
       this.cookies = res.data;
       this.loading = false;
     } catch (error) {
@@ -22,8 +22,8 @@ class CookieStore {
     try {
       const formData = new FormData();
       for (const key in newCookie) formData.append(key, newCookie[key]);
-      const res = await axios.post(
-        `http://localhost:8000/bakeries/${bakery.id}/cookies`,
+      const res = await instance.post(
+        `/bakeries/${bakery.id}/cookies`,
         formData
       );
       const cookie = res.data;
@@ -39,10 +39,7 @@ class CookieStore {
       // update in the backend
       const formData = new FormData();
       for (const key in updatedCookie) formData.append(key, updatedCookie[key]);
-      await axios.put(
-        `http://localhost:8000/cookies/${updatedCookie.id}`,
-        formData
-      );
+      await instance.put(`/cookies/${updatedCookie.id}`, formData);
       // update in the frontend
       const cookie = this.cookies.find(
         (cookie) => cookie.id === updatedCookie.id
@@ -57,7 +54,7 @@ class CookieStore {
   deleteCookie = async (cookieId) => {
     try {
       // delete in the backend
-      await axios.delete(`http://localhost:8000/cookies/${cookieId}`);
+      await instance.delete(`/cookies/${cookieId}`);
       // delete in the frontend
       this.cookies = this.cookies.filter((cookie) => cookie.id !== cookieId);
     } catch (error) {
