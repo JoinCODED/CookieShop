@@ -1,12 +1,23 @@
 import React from "react";
+import { observer } from "mobx-react";
 
 // Components
 import SignupButton from "../buttons/SignupButton";
+import SigninButton from "../buttons/SigninButton";
 
 // Styles
 import lightLogo from "../../light-logo.png";
 import darkLogo from "../../dark-logo.png";
-import { Logo, NavItem, NavStyled, ThemeButton } from "./styles";
+import {
+  Logo,
+  NavItem,
+  NavStyled,
+  ThemeButton,
+  UsernameStyled,
+} from "./styles";
+
+// Stores
+import authStore from "../../stores/authStore";
 
 const NavBar = ({ currentTheme, handleToggle }) => {
   return (
@@ -19,13 +30,25 @@ const NavBar = ({ currentTheme, handleToggle }) => {
           />
         </Logo>
         <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-          <NavItem className="nav-item" to="/bakeries">
-            Bakeries
-          </NavItem>
-          <NavItem className="nav-item" to="/cookies">
-            Cookies
-          </NavItem>
-          <SignupButton />
+          {authStore.user ? (
+            <UsernameStyled>Hello, {authStore.user.username}</UsernameStyled>
+          ) : (
+            <>
+              <SigninButton />
+              <SignupButton />
+            </>
+          )}
+          {authStore.user?.role === "admin" && (
+            <>
+              <NavItem className="nav-item" to="/bakeries">
+                Bakeries
+              </NavItem>
+              <NavItem className="nav-item" to="/cookies">
+                Cookies
+              </NavItem>
+            </>
+          )}
+
           <ThemeButton className="nav-item active" onClick={handleToggle}>
             {currentTheme === "light" ? "Dark" : "Light"} Mode
           </ThemeButton>
@@ -35,4 +58,4 @@ const NavBar = ({ currentTheme, handleToggle }) => {
   );
 };
 
-export default NavBar;
+export default observer(NavBar);

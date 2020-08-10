@@ -29,3 +29,7 @@ export const ThemeButton = styled.button`
   background-color: ${(props) => props.theme.mainColor};
   color: ${(props) => props.theme.backgroundColor};
 `;
+
+export const UsernameStyled = styled.p`
+  padding: 0.25em 1em;
+`;

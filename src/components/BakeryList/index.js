@@ -11,9 +11,14 @@ import { Title } from "../../styles";
 
 // Stores
 import bakeryStore from "../../stores/bakeryStore";
+import authStore from "../../stores/authStore";
+import { Redirect } from "react-router";
 
 const BakeryList = () => {
   const [query, setQuery] = useState("");
+
+  if (!authStore.user || authStore.user.role !== "admin")
+    return <Redirect to="/" />;
 
   const bakeryList = bakeryStore.bakeries
     .filter((bakery) => bakery.name.toLowerCase().includes(query.toLowerCase()))
