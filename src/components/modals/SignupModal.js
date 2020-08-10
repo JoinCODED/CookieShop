@@ -93,7 +93,7 @@ const SignupModal = ({ isOpen, closeModal }) => {
           <input
             required
             name="password"
-            type="text"
+            type="password"
             onChange={handleChange}
             className="form-control"
             value={user.password}
