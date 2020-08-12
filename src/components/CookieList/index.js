@@ -15,8 +15,8 @@ import { ListWrapper } from "./styles";
 const CookieList = ({ cookies = [] }) => {
   const [query, setQuery] = useState("");
 
-  if (!authStore.user || authStore.user.role !== "admin")
-    return <Redirect to="/" />;
+  // if (!authStore.user || authStore.user.role !== "admin")
+  //   return <Redirect to="/" />;
 
   const cookieList = cookies
     .filter((cookie) => cookie.name.toLowerCase().includes(query.toLowerCase()))

@@ -7,10 +7,9 @@ import authStore from "../../stores/authStore";
 // Styles
 import { CreateButtonStyled, LabelStyled } from "../modals/styles";
 import { Title } from "../../styles";
+import { observer } from "mobx-react";
 
 const Signin = () => {
-  const history = useHistory();
-
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -24,10 +23,18 @@ const Signin = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     authStore.signin(user);
-    history.push("/");
   };
 
-  if (authStore.user) return <Redirect to="/" />;
+  if (authStore.user)
+    return (
+      <Redirect
+        to={
+          authStore.user.bakerySlug
+            ? `/bakeries/${authStore.user.bakerySlug}`
+            : "/"
+        }
+      />
+    );
 
   return (
     <div className="container">
@@ -67,4 +74,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default observer(Signin);

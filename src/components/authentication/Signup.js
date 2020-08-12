@@ -8,7 +8,7 @@ import authStore from "../../stores/authStore";
 import { CreateButtonStyled, LabelStyled } from "../modals/styles";
 import { Title } from "../../styles";
 
-const SignupModal = () => {
+const Signup = () => {
   const history = useHistory();
   const [user, setUser] = useState({
     username: "",
@@ -99,4 +99,4 @@ const SignupModal = () => {
   );
 };
 
-export default SignupModal;
+export default Signup;
