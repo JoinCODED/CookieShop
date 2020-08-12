@@ -1,11 +1,8 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-// Components
-import SignupButton from "../buttons/SignupButton";
-import SigninButton from "../buttons/SigninButton";
-
 // Styles
+import { FiLogOut } from "react-icons/fi";
 import lightLogo from "../../light-logo.png";
 import darkLogo from "../../dark-logo.png";
 import {
@@ -30,12 +27,10 @@ const NavBar = ({ currentTheme, handleToggle }) => {
           />
         </Logo>
         <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-          {authStore.user ? (
-            <UsernameStyled>Hello, {authStore.user.username}</UsernameStyled>
-          ) : (
+          {authStore.user && (
             <>
-              <SigninButton />
-              <SignupButton />
+              <UsernameStyled>Hello, {authStore.user.username}</UsernameStyled>
+              <FiLogOut onClick={authStore.signout} size="2em" color="red" />
             </>
           )}
           {authStore.user?.role === "admin" && (

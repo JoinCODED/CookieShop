@@ -1,10 +1,16 @@
 import React from "react";
+import { observer } from "mobx-react";
+import { Redirect } from "react-router";
+
+// Stores
+import authStore from "../../stores/authStore";
 
 // Styles
 import { Description, ShopImage } from "./styles";
 import { Title } from "../../styles";
 
 const Home = () => {
+  if (!authStore.user) return <Redirect to="/signin" />;
   return (
     <>
       <Title>Cookies & Beyond</Title>
@@ -17,4 +23,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default observer(Home);

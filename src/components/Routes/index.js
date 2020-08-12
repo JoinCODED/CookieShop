@@ -7,6 +7,8 @@ import BakeryDetail from "../BakeryDetail";
 import CookieDetail from "../CookieDetail";
 import CookieList from "../CookieList";
 import Home from "../Home";
+import Signin from "../authentication/Signin";
+import Signup from "../authentication/Signup";
 
 // Stores
 import cookieStore from "../../stores/cookieStore";
@@ -15,6 +17,12 @@ import { observer } from "mobx-react";
 const Routes = () => {
   return (
     <Switch>
+      <Route path="/signin">
+        <Signin />
+      </Route>
+      <Route path="/signup">
+        <Signup />
+      </Route>
       <Route path="/bakeries/:bakerySlug">
         <BakeryDetail />
       </Route>
