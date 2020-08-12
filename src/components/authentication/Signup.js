@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory, Redirect, Link } from "react-router-dom";
 
 // Stores
 import authStore from "../../stores/authStore";
@@ -91,6 +91,9 @@ const SignupModal = () => {
         <CreateButtonStyled className="btn float-right">
           Sign up
         </CreateButtonStyled>
+        <Link to="/signin">
+          <p>Already have an account?</p>
+        </Link>
       </form>
     </div>
   );

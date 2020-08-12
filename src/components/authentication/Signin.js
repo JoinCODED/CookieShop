@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory, Redirect, Link } from "react-router-dom";
 
 // Stores
 import authStore from "../../stores/authStore";
@@ -59,6 +59,9 @@ const Signin = () => {
         <CreateButtonStyled className="btn float-right">
           Sign in
         </CreateButtonStyled>
+        <Link to="/signup">
+          <p>Are you a new user?</p>
+        </Link>
       </form>
     </div>
   );
