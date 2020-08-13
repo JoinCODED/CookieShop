@@ -11,6 +11,9 @@ import { Title } from "../../styles";
 
 const Home = () => {
   if (!authStore.user) return <Redirect to="/signin" />;
+  if (authStore.user.bakerySlug)
+    return <Redirect to={`/bakeries/${authStore.user.bakerySlug}`} />;
+
   return (
     <>
       <Title>Cookies & Beyond</Title>

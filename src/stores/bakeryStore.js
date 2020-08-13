@@ -1,6 +1,8 @@
 import { decorate, observable } from "mobx";
 import instance from "./instance";
 
+import authStore from "./authStore";
+
 class BakeryStore {
   bakeries = [];
   loading = true;
@@ -21,6 +23,7 @@ class BakeryStore {
       for (const key in newBakery) formData.append(key, newBakery[key]);
       const res = await instance.post(`/bakeries`, formData);
       this.bakeries.push(res.data);
+      authStore.user.bakerySlug = res.data.slug;
     } catch (error) {
       console.log("BakeryStore -> createBakery -> error", error);
     }

@@ -14,9 +14,12 @@ import bakeryStore from "../../stores/bakeryStore";
 import CookieList from "../CookieList";
 import DeleteButton from "../buttons/DeleteButton";
 import cookieStore from "../../stores/cookieStore";
+import authStore from "../../stores/authStore";
 
 const BakeryDetail = () => {
   const { bakerySlug } = useParams();
+
+  if (!authStore.user) return <Redirect to="/signin" />;
 
   const bakery = bakeryStore.bakeries.find(
     (_bakery) => _bakery.slug === bakerySlug
@@ -25,8 +28,10 @@ const BakeryDetail = () => {
   if (!bakery) return <Redirect to="/bakeries" />;
 
   const cookies = bakery.cookies
-    .map((cookie) => cookieStore.getCookieById(cookie.id))
-    .filter((cookie) => cookie);
+    ? bakery.cookies
+        .map((cookie) => cookieStore.getCookieById(cookie.id))
+        .filter((cookie) => cookie)
+    : [];
 
   return (
     <div className="row">

@@ -6,6 +6,7 @@ class AuthStore {
   user = null;
 
   setUser = (token) => {
+    localStorage.setItem("myToken", token);
     instance.defaults.headers.common.Authorization = `Bearer ${token}`;
     this.user = decode(token);
   };
@@ -31,6 +32,19 @@ class AuthStore {
   signout = () => {
     delete instance.defaults.headers.common.Authorization;
     this.user = null;
+    localStorage.removeItem("myToken");
+  };
+
+  checkForToken = () => {
+    const token = localStorage.getItem("myToken");
+    if (token) {
+      const decodedToken = decode(token);
+      if (Date.now() < decodedToken.exp) {
+        this.setUser(token);
+      } else {
+        this.signout();
+      }
+    }
   };
 }
 
@@ -39,5 +53,6 @@ decorate(AuthStore, {
 });
 
 const authStore = new AuthStore();
+authStore.checkForToken();
 
 export default authStore;

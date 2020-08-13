@@ -1,19 +1,24 @@
 import React from "react";
+import { observer } from "mobx-react";
 
 // Stores
 import cookieStore from "../../stores/cookieStore";
+import authStore from "../../stores/authStore";
 
 // Styles
 import { DeleteButtonStyled } from "./styles";
 import bakeryStore from "../../stores/bakeryStore";
 
 const DeleteButton = ({ bakeryId, cookieId }) => {
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (cookieId) cookieStore.deleteCookie(cookieId);
-    else bakeryStore.deleteBakery(bakeryId);
+    else {
+      await bakeryStore.deleteBakery(bakeryId);
+      authStore.user.bakerySlug = null;
+    }
   };
 
   return <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>;
 };
 
-export default DeleteButton;
+export default observer(DeleteButton);

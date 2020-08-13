@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { observer } from "mobx-react";
 
 // Styles
@@ -15,8 +15,14 @@ import {
 
 // Stores
 import authStore from "../../stores/authStore";
+import BakeryModal from "../modals/BakeryModal";
 
 const NavBar = ({ currentTheme, handleToggle }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeModal = () => setIsOpen(false);
+  const openModal = () => setIsOpen(true);
+
   return (
     <NavStyled className="navbar navbar-expand-lg">
       <div className="collapse navbar-collapse">
@@ -43,6 +49,10 @@ const NavBar = ({ currentTheme, handleToggle }) => {
               </NavItem>
             </>
           )}
+          {authStore.user && !authStore.user.bakerySlug && (
+            <UsernameStyled onClick={openModal}>Create Bakery</UsernameStyled>
+          )}
+          <BakeryModal isOpen={isOpen} closeModal={closeModal} />
 
           <ThemeButton className="nav-item active" onClick={handleToggle}>
             {currentTheme === "light" ? "Dark" : "Light"} Mode
