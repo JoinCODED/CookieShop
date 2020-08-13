@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { observer } from "mobx-react";
 
 // Components
-import AddButton from "../buttons/AddButton";
+import AddButton from "../Buttons/AddButton";
 import BakeryItem from "./BakeryItem";
 import SearchBar from "../SearchBar";
 

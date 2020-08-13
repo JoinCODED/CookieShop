@@ -3,8 +3,8 @@ import { observer } from "mobx-react";
 import { Redirect, useParams } from "react-router-dom";
 
 // Components
-import AddButton from "../buttons/AddButton";
-import UpdateButton from "../buttons/UpdateButton";
+import AddButton from "../Buttons/AddButton";
+import UpdateButton from "../Buttons/UpdateButton";
 
 // Styles
 import { DetailWrapper } from "../CookieDetail/styles";
@@ -12,7 +12,7 @@ import { DetailWrapper } from "../CookieDetail/styles";
 // Stores
 import bakeryStore from "../../stores/bakeryStore";
 import CookieList from "../CookieList";
-import DeleteButton from "../buttons/DeleteButton";
+import DeleteButton from "../Buttons/DeleteButton";
 import cookieStore from "../../stores/cookieStore";
 import authStore from "../../stores/authStore";
 
