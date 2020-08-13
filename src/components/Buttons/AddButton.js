@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from "./node_modules/react";
 
 // Components
 import CookieModal from "../modals/CookieModal";
 
 // Styles
-import { BsPlusCircle } from "react-icons/bs";
+import { BsPlusCircle } from "./node_modules/react-icons/bs";
 import BakeryModal from "../modals/BakeryModal";
 
 const AddButton = ({ bakery }) => {

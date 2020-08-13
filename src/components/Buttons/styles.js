@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "./node_modules/styled-components";
 
 export const AuthButtonStyled = styled.button`
   font-size: 1em;
